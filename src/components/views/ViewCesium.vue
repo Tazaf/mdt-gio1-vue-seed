@@ -47,7 +47,8 @@ export default {
   },
   mounted() {
     // add cesium ion token to the app
-    Cesium.Ion.defaultAccessToken = process.env.VUE_APP_CESIUM_ION_TOKEN;
+    // Cesium.Ion.defaultAccessToken = process.env.VUE_APP_CESIUM_ION_TOKEN;
+    Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwY2ZhOGUzOC1kYmQwLTRhMmQtODU2My0yNTkyYjBiYmRhZDkiLCJpZCI6MTE1MjMxLCJpYXQiOjE2Njg3MDQwNDF9.-B6cLmbix03DC71OJ22O-O7bT7_uHD05AejWRGwIhSk";
 
     this.viewer = this.setupCesiumGlobe();
     this.flytodirection(this.center, this.defaultheight, this.viewer);
