@@ -49,6 +49,6 @@ export default {
 #menu_bar{
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 15px 25px 5px 10px;
 }
 </style>

@@ -45,33 +45,48 @@ export default{
 </script>
 <style scoped>
 
-li{
+.tabs li{
         color: var(--red_proj);
         font-family: 'Oswald', Arial, Helvetica, sans-serif;
         font-style: italic;
-        font-size: 25px;
+        font-size: 20px;
         font-weight: bold;
         background-color: white;
-        border : 5px solid var(--red_proj);
-        border-radius: 10px;
-        padding:2px 10px;
+        border : 0px solid var(--red_proj);
+        border-radius: 0px;
+        /* padding:2px 10px; */
+        width: 200px;
+        height: 50px;
     }
-li:hover{
+.tabs li:hover{
         background-color: var(--red_proj);
         color: white;
         border-color: white;
         cursor : pointer;
     }
 
-a {
+.tabs a {
   align-items: center;
-  border-bottom-color: #dbdbdb;
-  border-bottom-style: none;
-  border-bottom-width: 0px;
-  color: #4a4a4a;
   display: flex;
   justify-content: center;
-  margin-bottom: -1px;
-  padding: 0.5em 1em;
+  border: 0px;
+  color: var(--red_proj);
+  margin: none;
+  width:100%;
+  height: 100%;
+  border : 5px solid var(--red_proj);
+  border-radius: 0px;
 }
+.tabs a:hover {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border: 0px;
+  color: white;
+}
+.tabs a.router-link-exact-active{
+  background-color: var(--red_proj);
+  color: white;
+}
+
 </style>
