@@ -14,14 +14,12 @@ import { register } from 'ol/proj/proj4';
 import proj4 from 'proj4';
 import View from "ol/View"
 
-// import { register } from 'jscodeshift/src/collections/JSXElement';
-
-//Definition de la projection
-
+//Projection Suisse MN95
 proj4.defs("EPSG:2056", "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs");
 
 register(proj4)
 
+//Constante pour le WMST Cadastre
 const resolutions = [
   4000, 3750, 3500, 3250, 3000, 2750, 2500, 2250, 2000, 1750, 1500, 1250,
   1000, 750, 650, 500, 250, 100, 50, 20, 10, 5, 2.5, 2, 1.5, 1, 0.5
@@ -38,7 +36,7 @@ for (var i = 0; i < resolutions.length; i++) {
 }
 
 
-// Ajout fond de carte
+//Création d'un WMTS cadastre vaud
 const wmtsCadastre = new TileLayer({
   source: new WMTS(({
     layer: 'asitvd.fond_cadastral',
@@ -54,10 +52,11 @@ const wmtsCadastre = new TileLayer({
   visible: true
 });
 
+//Création des paramètres de vue (zoom et centre)
 const view_map = new View({
-  center: [2519500, 1149600],
+  center: [2521400, 1156000],
   projection: projection,
-  zoom: 7,
+  zoom: 12,
   maxZoom: 16
 });
 
@@ -80,6 +79,6 @@ export default {
 
 <style scoped>
 #ol-container {
-  height: 500px;
+  height: calc(100% - 80px);
 }
 </style>

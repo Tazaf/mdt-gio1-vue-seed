@@ -35,7 +35,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 10px;
   height: 100%;
   width: 100%;
 }
@@ -50,5 +49,11 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 15px 25px 5px 10px;
+}
+html{
+  height: 100%;
+}
+body{
+  height: 99%;
 }
 </style>
