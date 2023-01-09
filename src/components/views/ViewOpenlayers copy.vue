@@ -1,15 +1,5 @@
 <template>
-  <div id="inside_view">
-    <div id="layer_div">
-      <div id="layer_list">
-        <div>
-          <div class="vectore_style"></div>
-          <div class="vector_name"></div>
-        </div>
-      </div>
-    </div>
-    <div id="ol-container" class="map"></div>
-  </div>
+  <div id="inside_view"><div id="layer_list"></div><div id="ol-container" class="map"></div></div>
 </template>
 
 <script>
@@ -29,7 +19,6 @@ import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { Vector as VectorLayer } from 'ol/layer';
 import Feature from 'ol/Feature';
 import Circle from 'ol/geom/Circle';
-import GeoTIFF from 'geotiff';
 
 //Projection Suisse MN95
 proj4.defs("EPSG:2056", "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000 +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs");
@@ -83,78 +72,49 @@ const casier = {
     { "type": "Feature", "properties": {}, "geometry": { "type": "MultiLineString", "coordinates": [[[2521144.364, 1155957.712], [2521292.58600000012666, 1156205.504999999888241]]] } },
   ]
 };
+const casier_c = new VectorLayer({
+  source: new VectorSource({
+    features: new GeoJSON().readFeatures(casier),
+  }),
+  style: new Style({
+    stroke: new Stroke({
+      color: 'rgb(20, 0, 0, 1)',
+      width: 2
+    })
+  }),
+  visible: true
+});
 
 //PERIMETRE
 const perimgeojson = {
   "type": "FeatureCollection",
   "name": "perimetre",
   "features": [
-    { "type": "Feature", "properties": {}, "geometry": { "type": "MultiLineString", "coordinates": [[[2520485.26299999980256, 1156285.377], [2520487.177000000141561, 1156288.997], [2520489.904999999795109, 1156287.334], [2520487.867999999783933, 1156283.827], [2520485.26299999980256, 1156285.377]]] } },
-    { "type": "Feature", "properties": {}, "geometry": { "type": "MultiLineString", "coordinates": [[[2521100.469, 1155797.449], [2521104.370000000111759, 1155803.3], [2521111.203000000212342, 1155814.038], [2521117.600999999791384, 1155826.834], [2521132.859000000171363, 1155838.571], [2521137.055000000167638, 1155838.571], [2521148.832, 1155836.216], [2521168.068, 1155819.602], [2521180.291000000201166, 1155833.571], [2521185.56, 1155833.571], [2521232.56, 1155833.571], [2521250.890999999828637, 1155833.571], [2521277.56900000013411, 1155840.847], [2521249.933000000193715, 1155809.96], [2521237.866, 1155776.543], [2521267.824, 1155771.984], [2521341.744, 1155820.392], [2521442.048, 1155886.077], [2521480.376000000163913, 1155911.177], [2521484.08, 1155913.92], [2521487.443, 1155917.07], [2521490.421999999787658, 1155920.587], [2521492.977, 1155924.422], [2521495.072999999858439, 1155928.526], [2521496.683999999891967, 1155932.844], [2521497.787, 1155937.319], [2521498.367999999783933, 1155941.891], [2521498.42, 1155946.499], [2521497.941000000108033, 1155951.082], [2521463.741, 1156160.673], [2521444.207, 1156163.074], [2521434.404, 1156164.895], [2521352.024000000208616, 1156188.446], [2521349.78899999987334, 1156188.923], [2521198.816000000108033, 1156232.686], [2521157.33, 1156247.476], [2521131.069999999832362, 1156266.95], [2521057.916999999899417, 1156171.774], [2521041.27, 1156154.069], [2521016.974, 1156135.699], [2520995.211999999824911, 1156149.773], [2520903.085, 1156001.821], [2520879.390000000130385, 1155830.965], [2521089.881, 1155799.057], [2521100.469, 1155797.449]]] } }
+    { "type": "Feature", "properties": { }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 2520485.26299999980256, 1156285.377 ], [ 2520487.177000000141561, 1156288.997 ], [ 2520489.904999999795109, 1156287.334 ], [ 2520487.867999999783933, 1156283.827 ], [ 2520485.26299999980256, 1156285.377 ] ] ] } },
+    { "type": "Feature", "properties": { }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 2521100.469, 1155797.449 ], [ 2521104.370000000111759, 1155803.3 ], [ 2521111.203000000212342, 1155814.038 ], [ 2521117.600999999791384, 1155826.834 ], [ 2521132.859000000171363, 1155838.571 ], [ 2521137.055000000167638, 1155838.571 ], [ 2521148.832, 1155836.216 ], [ 2521168.068, 1155819.602 ], [ 2521180.291000000201166, 1155833.571 ], [ 2521185.56, 1155833.571 ], [ 2521232.56, 1155833.571 ], [ 2521250.890999999828637, 1155833.571 ], [ 2521277.56900000013411, 1155840.847 ], [ 2521249.933000000193715, 1155809.96 ], [ 2521237.866, 1155776.543 ], [ 2521267.824, 1155771.984 ], [ 2521341.744, 1155820.392 ], [ 2521442.048, 1155886.077 ], [ 2521480.376000000163913, 1155911.177 ], [ 2521484.08, 1155913.92 ], [ 2521487.443, 1155917.07 ], [ 2521490.421999999787658, 1155920.587 ], [ 2521492.977, 1155924.422 ], [ 2521495.072999999858439, 1155928.526 ], [ 2521496.683999999891967, 1155932.844 ], [ 2521497.787, 1155937.319 ], [ 2521498.367999999783933, 1155941.891 ], [ 2521498.42, 1155946.499 ], [ 2521497.941000000108033, 1155951.082 ], [ 2521463.741, 1156160.673 ], [ 2521444.207, 1156163.074 ], [ 2521434.404, 1156164.895 ], [ 2521352.024000000208616, 1156188.446 ], [ 2521349.78899999987334, 1156188.923 ], [ 2521198.816000000108033, 1156232.686 ], [ 2521157.33, 1156247.476 ], [ 2521131.069999999832362, 1156266.95 ], [ 2521057.916999999899417, 1156171.774 ], [ 2521041.27, 1156154.069 ], [ 2521016.974, 1156135.699 ], [ 2520995.211999999824911, 1156149.773 ], [ 2520903.085, 1156001.821 ], [ 2520879.390000000130385, 1155830.965 ], [ 2521089.881, 1155799.057 ], [ 2521100.469, 1155797.449 ] ] ] } }
   ]
 };
+const perim = new VectorLayer({
+  source: new VectorSource({
+    features: new GeoJSON().readFeatures(perimgeojson),
+  }),
+  style: new Style({
+    stroke: new Stroke({
+      color: 'blue',
+      lineDash: [10],
+      width: 4
+    })
+  }),
+  visible: true
+});
 
-
-
-function create_vector(class_layer) {
-  let vectorlay = new VectorLayer({
-    source: new VectorSource({
-      features: new GeoJSON().readFeatures(class_layer['geojson_layer']),
-    }),
-    style: new Style({
-      stroke: new Stroke({
-        color: class_layer['color'],
-        lineDash: [ class_layer['line']],
-        width: class_layer['width_li']
-      })
-    }),
-    visible: true
-  });
-  return vectorlay
-}
-
-
-class layer {
-  constructor(color, line, width_li, name_layer, geojson_layer) {
-    this.color = color;
-    this.line = line;
-    this.width_li = width_li;
-    this.name_layer = name_layer;
-    this.geojson_layer = geojson_layer;
-  }
-}
-
-
-var layer_list = [];
-
-layer_list.push(new layer('rgb(20, 0, 0, 1)', 1, 2, "casier", casier))
-layer_list.push(new layer('blue', 10, 4, "perimetre", perimgeojson))
-
-
-
-
-var vector_list = []
-
-for (let value of layer_list) {
-  vector_list.push(create_vector(value))
-}
-
-
-// Orthophoto
-var ortho = new TileLayer({
-  source : new GeoTIFF({
-    sources: [{
-      url : "../assets/ortho_cog.tif"
-    }]
-  })
-})
 
 
 
 //Création des paramètres de vue (zoom et centre)
 // ================================================================================
 const view_map = new View({
-  center: [2521300, 1156000],
+  center: [2521400, 1156000],
   projection: projection,
   zoom: 12,
   maxZoom: 16
@@ -169,15 +129,10 @@ export default {
       view: view_map,
 
     });
-
-
-   
-     
+    
     map.addLayer(wmtsCadastre);
-    map.addLayer(ortho)
-    for (let layer_i of vector_list) {
-      map.addLayer(layer_i);
-    }
+    map.addLayer(casier_c);
+    map.addLayer(perim);
 
 
 
@@ -186,17 +141,17 @@ export default {
 </script>
 
 <style scoped>
-#inside_view {
-  height: 100%;
-  display: flex;
-}
-
 #ol-container {
   height: 100%;
   width: calc(100% - 250px);
 }
 
-#layer_div {
-  width: 250px;
+#inside_view {
+  display: flex;
+  height: calc(100% - 80px);
+}
+#layer_list{
+  width:250px;
+  height: 100%;
 }
 </style>
