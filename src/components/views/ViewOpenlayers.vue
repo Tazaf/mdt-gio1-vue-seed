@@ -9,6 +9,7 @@
           </div>
           <div class="layer_symbol"></div>
         </div>
+        <div  id="descr_utile">Cliquer sur le nom de la couche permet de l'activer ou la désactiver</div>
       </div>
     </div>
     <div id="ol-container" class="map">
@@ -36,22 +37,6 @@ import { Vector as VectorLayer } from 'ol/layer';
 
 //FUNCTION DE BASE
 // ================================================================================
-function style_vector (feature, resolution){
-  let text_descr = feature.get('descr');
-  return new Style({
-    stroke: new Stroke({
-      color: 'red',
-      lineDash: [1],
-      width: 1        
-    }),
-    text : new Text({
-        text : text_descr,
-        placement : 'Point',
-        font : '12px Calibri, Courier New'
-    })
-  })
-}
-
 function create_vector(classi) {
   let Geojson =  new GeoJSON().readFeatures(classi['geojson_layer']);
   var class_layer = classi
@@ -60,7 +45,10 @@ function create_vector(classi) {
       features: Geojson
     }),
     style : function(feature){
-      let text_descr = feature.get('descr');
+      let text_descr = feature.get('descr')
+      if(feature.get('volume')){
+        text_descr+= '\n'+feature.get('volume')
+      };
       return new Style({
         stroke: new Stroke({
           color: class_layer['color'],
@@ -223,7 +211,7 @@ for (let value of vector_list) {
 const view_map = new View({
   center: [2521300, 1156000],
   projection: projection,
-  zoom: 12,
+  zoom: 13,
   maxZoom: 16
 });
 
@@ -264,11 +252,11 @@ export default {
 
 #ol-container {
   height: 100%;
-  width: calc(100% - 250px);
+  width: calc(100% - 400px);
 }
 
 #layer_div {
-  width: 250px;
+  width: 400px;
 }
 #layer_list{
   margin: 20px 25px;
@@ -288,5 +276,13 @@ export default {
 .layer_line_descr div:hover{
   font-style: italic;
   text-decoration: underline;
+}
+
+#descr_utile{
+  font-size: 15px;
+  text-align: left;
+  margin-top: 50px;
+  font-style: italic;
+  font-family: 'Courier New', Courier, monospace;
 }
 </style>
