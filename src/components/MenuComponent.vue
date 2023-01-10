@@ -19,23 +19,15 @@ export default{
     return {
       menuList: [
         {
-          menuname: 'Hello',
+          menuname: 'Accueil',
           route: '/'
         },
         {
-          menuname: 'Axios',
-          route: '/axios'
-        },
-        {
-          menuname: '2d_openlayers',
+          menuname: 'Carte 2D',
           route: '/openlayers'
         },
         {
-          menuname: '2d_leaflet',
-          route: '/leaflet'
-        },
-        {
-          menuname: '3d_cesium',
+          menuname: 'Modélisation 3D',
           route: '/cesium'
         }
       ]
