@@ -20,26 +20,19 @@
 <script>
 import 'ol/ol.css';
 import Map from 'ol/Map';
-import Overlay from 'ol/Overlay';
 import WMTS from 'ol/source/WMTS';
 import TileLayer from 'ol/layer/Tile';
 import Image from 'ol/layer/Image';
-import source, { ImageStatic } from 'ol/source';
+import { ImageStatic } from 'ol/source';
 import tilegrid from 'ol/tilegrid/WMTS';
 import * as olProj from 'ol/proj/';
 import { register } from 'ol/proj/proj4';
-import Projection from 'ol/proj/Projection';
 import proj4 from 'proj4';
 import View from "ol/View"
 import GeoJSON from 'ol/format/GeoJSON';
 import { Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style, Text } from 'ol/style';
 import { Vector as VectorLayer } from 'ol/layer';
-import Feature from 'ol/Feature';
-import Circle from 'ol/geom/Circle';
-import GeoTIFF from 'geotiff';
-import { text } from 'body-parser';
-import { features } from 'process';
 
 //FUNCTION DE BASE
 // ================================================================================
