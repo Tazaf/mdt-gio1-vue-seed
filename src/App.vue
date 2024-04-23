@@ -1,70 +1,59 @@
 <template>
-  <img id="vue-icon" src="./assets/logo.png" alt="Logo" />
-  <!-- Bulma: menu tabs -->
-  <div class="tabs is-centered">
-    <ul>
-      <li
-        v-for="menu in menuList"
-        :key="menu.name"
-        :class="{ 'is-active': currentRoute === menu.route }"
-      >
-        <router-link :to="menu.route"> {{ menu.menuname }} </router-link>
-      </li>
-    </ul>
+  <div id="div_menu">
+    <section id="menu_bar">
+      <img id="vue-icon" src="./assets/logo.svg" alt="Logo" />
+      <MenuComponent v-bind:menu-list="menuList" />
+    </section>
   </div>
+  
   <!-- end Bulma: menu tabs -->
-  <router-view />
+  <router-view /><!-- endroit ou sont indiqué les éléments qui font changer la page-->
 </template>
 
 <script>
+import MenuComponent from './components/MenuComponent.vue'
+
 export default {
   name: 'App-root',
-  data() {
-    return {
-      menuList: [
-        {
-          menuname: 'Hello',
-          route: '/'
-        },
-        {
-          menuname: 'Axios',
-          route: '/axios'
-        },
-        {
-          menuname: '2d_openlayers',
-          route: '/openlayers'
-        },
-        {
-          menuname: '2d_leaflet',
-          route: '/leaflet'
-        },
-        {
-          menuname: '3d_cesium',
-          route: '/cesium'
-        }
-      ]
-    };
-  },
+  
   computed: {
     currentRoute() {
       return this.$route.path;
     }
-  }
+  },
+  components: {MenuComponent}
 };
 </script>
 
 <style>
+:root {
+    --red_proj: rgb(193,4,53); 
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   height: 100%;
   width: 100%;
 }
 #vue-icon {
-  height: 5em;
+  height: 60px;
+}
+#div_menu{
+  background-image: linear-gradient(rgba(1,1,1,0.8),rgba(1,1,1,0));
+  height: 80px;
+}
+#menu_bar{
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 25px 5px 10px;
+}
+html{
+  height: 100%;
+}
+body{
+  height: 99%;
 }
 </style>
